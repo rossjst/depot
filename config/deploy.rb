@@ -3,7 +3,7 @@ lock '3.4.0'
 
 server '54.205.240.159', roles: [:web, :app, :db], primary: true
 
-set :repo_url,        'git@github.com/rossjst/depot.git'
+set :repo_url,        'git@github.com:rossjst/depot.git'
 set :application,     'depot'
 set :user,            'deploy'
 set :puma_threads,    [4, 16]
@@ -52,8 +52,8 @@ namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:app) do
-      unless `git rev-parse HEAD` == `git rev-parse origin/master`
-        puts "WARNING: HEAD is not the same as origin/master"
+      unless `git rev-parse HEAD` == `git rev-parse depot/master`
+        puts "WARNING: HEAD is not the same as depot/master"
         puts "Run `git push` to sync changes."
         exit
       end
